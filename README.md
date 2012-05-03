@@ -3,6 +3,8 @@ Miner
 
 Miner is a toy library for data mining. The main goal of this library is to provide an introduction to different data mining techniques while learning on the subject myself. This library isn't optimized for performance nor production use, but this might change at a later date. 
 
+[![Build Status](https://secure.travis-ci.org/joelcox/miner.png?branch=master)](http://travis-ci.org/joelcox/miner)
+
 Quick start
 -----------
 
