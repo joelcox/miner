@@ -22,8 +22,3 @@ class TestSpace(unittest.TestCase):
     
     def test_dimension_mismatch(self):
         self.assertRaises(IndexError, self.space.point, (1.00, 2.00))
-        
-    def test_distance(self):
-        # Wolfram `EuclidianDistance({1,2,3},{3,2,1}`
-        self.assertEquals(miner.utils.distance((1, 2, 3), (3, 2, 1)),
-                          2.8284271247461903)

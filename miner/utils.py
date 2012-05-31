@@ -1,3 +1,4 @@
+from __future__ import division
 import math
 from types import ListType
 
@@ -26,8 +27,7 @@ class Space(object):
         self.points.append(tuple(floats))
 
 def distance(p, q):
-    """
-    Compute the Euclidian distance between two points
+    """ Computes the Euclidian distance between two points
     """
     if len(p) != len(q):
         raise IndexError('The dimension of the two points don\'t match')
@@ -37,3 +37,36 @@ def distance(p, q):
         total += (p[i] - q[i])**2
     
     return math.sqrt(total)
+    
+def gini(p, q):
+    """ Computes the Gini index between two numbers
+    """
+    # TODO: generalize to arbitrary number of points
+    total = p + q
+    return 1 - (p/total)**2 - (q/total)**2
+    
+def entropy(p, q):
+    """ Computes the Entropy between two numbers
+    """
+    total = p + q
+    
+    # TODO: generalize to arbitrary number of points
+    try:
+        p_log = math.log(p/total, 2);
+    except ValueError:
+        p_log = 0
+        
+    try:
+        q_log = math.log(q/total, 2);
+    except ValueError:
+        q_log = 0    
+    
+    return -(p/total) * p_log - (q/total) * q_log
+    
+def classification_error(p, q):
+    """ Computers the classification error rate
+    """
+    total = p + q
+    return 1 - max(p/total, q/total)
+    
+    
