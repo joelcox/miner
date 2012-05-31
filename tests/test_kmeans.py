@@ -4,11 +4,10 @@ sys.path.insert(0, os.path.abspath('..'))
 
 import unittest
 
-import miner.utils
 import miner.clustering
 
 
-class TestSpace(unittest.TestCase):
+class TestKMeans(unittest.TestCase):
 
     def setUp(self):
         space = miner.utils.Space()
