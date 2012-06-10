@@ -11,7 +11,7 @@ class TestKMeans(unittest.TestCase):
 
     def setUp(self):
         space = miner.utils.Space()
-        space.point([(2, 2), (2, 1), (2, 3), (2, -2), (2, -1), (2, -3)])
+        space.points([(2, 2), (2, 1), (2, 3), (2, -2), (2, -1), (2, -3)])
 
         self.kmeans = miner.clustering.KMeans(2, space)
 

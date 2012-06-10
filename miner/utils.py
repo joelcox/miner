@@ -9,15 +9,15 @@ class Space(object):
             raise ValueError('Dimension can\'t be smaller than 2')
 
         self.dimension = dimension
-        self.points = []
+        self.array = []
 
-    def point(self, *args):
+    def points(self, *args):
         """Appends a point to the point lists and verifies
         its dimension.
         """
         if (type(args[0]) is types.ListType):
             for tup in args[0]:
-                self.point(*tup)
+                self.points(*tup)
             return
 
         if len(args) != self.dimension:
@@ -25,7 +25,7 @@ class Space(object):
                               dimension (%s)' % (len(args), self.dimension))
 
         floats = map(float, args)
-        self.points.append(tuple(floats))
+        self.array.append(tuple(floats))
 
 
 def distance(p, q):

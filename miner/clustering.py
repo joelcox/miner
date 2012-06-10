@@ -34,20 +34,20 @@ class KMeans(object):
         and adding the index to centroids list
         """
 
-        amount = len(self.space.points) - 1
+        amount = len(self.space.array) - 1
         self.centroids = []
 
         for k in range(self.k):
-            centroid = self.space.points[(random.randint(0, amount))]
+            centroid = self.space.array[(random.randint(0, amount))]
             self.centroids.append(centroid)
             amount -= 1
 
     def compute_distances(self):
         self.distances = []
 
-        for point_index in range(len(self.space.points)):
+        for point_index in range(len(self.space.array)):
             distance = []
-            point = self.space.points[point_index]
+            point = self.space.array[point_index]
 
             for centroid in self.centroids:
                 distance.append(dist(centroid, point))
@@ -62,7 +62,7 @@ class KMeans(object):
         for k in range(self.k):
             self.clusters.append({'points': []})
 
-        for point in range(len(self.space.points)):
+        for point in range(len(self.space.array)):
             current_distances = self.distances.pop(0)
             lowest_distance = min(current_distances)
             cluster_index = current_distances.index(lowest_distance)
@@ -81,8 +81,8 @@ class KMeans(object):
             y = 0
 
             for point in self.clusters[cluster]['points']:
-                x += self.space.points[point][0]
-                y += self.space.points[point][1]
+                x += self.space.array[point][0]
+                y += self.space.array[point][1]
 
             # Make sure we don't device by zero
             length = len(self.clusters[cluster]['points'])
