@@ -14,7 +14,7 @@ A simple yet powerful algorithm for cluster analysis is the *k-means* algorithm.
     import miner.clustering
     
     space = miner.utils.Space()
-    space.point([(2, 2), (2, 1), (2, 3), (2, -2), (2, -1), (2, -3)])
+    space.points([(2, 2), (2, 1), (2, 3), (2, -2), (2, -1), (2, -3)])
     
     kmeans = miner.clustering.KMeans(2, space)
     kmeans.converge()
