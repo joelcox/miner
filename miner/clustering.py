@@ -24,7 +24,7 @@ class KMeans(object):
         while True:
             self.compute_distances()
             self.assign_points()
-            if self.compute_centroids() == False:
+            if self.compute_centroids() is False:
                 break
 
         kwargs['render'](self.space, self.clusters)

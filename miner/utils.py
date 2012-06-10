@@ -15,7 +15,7 @@ class Space(object):
         """Appends a point to the point lists and verifies
         its dimension.
         """
-        if (type(args[0]) is types.ListType):
+        if (isinstance(args[0], list)):
             for tup in args[0]:
                 self.points(*tup)
             return
