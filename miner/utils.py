@@ -57,7 +57,7 @@ class Matrix(Space):
                               amount of records (%s)' %
                               (len(classes), len(self.array)))
 
-        self.classes = classes
+        self.class_labels = classes
 
     def normalize(self):
         """Normalizes all columns in the matrix so that the standard deviation
@@ -135,7 +135,9 @@ class CappedOrderedList(object):
 
     def __str__(self):
         return str(self.list)
-
+        
+    def __iter__(self):
+        return self.list.__iter__()
 
 def distance(p, q):
     """ Computes the Euclidian distance between two points
