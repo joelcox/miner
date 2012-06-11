@@ -77,6 +77,66 @@ class Matrix(Space):
                 self.array[row_index, column_index] = (element - mean) / std
 
 
+class CappedOrderedList(object):
+    """A list with a fixed size that maintains order"""
+
+    def __init__(self, length=3):
+        self.list = []
+        self.length = length
+
+    def add(self, item):
+        """Adds a new item to the list"""
+        if item is isinstance(item, tuple):
+            value = item[0]
+        else:
+            value = item
+
+        # Check whether and where we insert the new item
+        insert_position = self._find_insert_position(value)
+
+        if insert_position is not False:
+            self.list.insert(insert_position, item)
+            self._maintain_length()
+
+    def _find_insert_position(self, value):
+        """Computes at which position a new item should be inserted"""
+        if len(self.list) == 0:
+            return 0
+
+        for index in range(len(self.list)):
+
+            item = self.list[index]
+            if item is isinstance(item, tuple):
+                existing_value = item[0]
+            else:
+                existing_value = item
+
+            if value > existing_value:
+                return index
+
+        # Make sure to append if the list isn't full yet
+        if self.length != len(self.list):
+            return len(self.list)
+        return False
+
+    def _maintain_length(self):
+        """Ensures that the length of the list is never longer
+        than the max"""
+        if self.length < len(self.list):
+            self.list.pop()
+
+    def __len__(self):
+        """Returns the length of the internal list"""
+        return len(self.list)
+
+    def __getitem__(self, index):
+        """Returns the element at the given location in the internal list"""
+        return self.list[index]
+
+    def __str__(self):
+        return str(self.list)
+
+
 def distance(p, q):
     """ Computes the Euclidian distance between two points
     """
