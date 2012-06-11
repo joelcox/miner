@@ -39,6 +39,6 @@ class TestMatrix(unittest.TestCase):
         self.matrix.normalize()
 
         # Make sure that the std dev is 1 for event column
-        self.assertEqual(self.matrix.array[0:, 0].std(), 1.0)
-        self.assertEqual(self.matrix.array[0:, 1].std(), 1.0)
-        self.assertEqual(self.matrix.array[0:, 2].std(), 1.0)
+        self.assertAlmostEqual(self.matrix.array[0:, 0].std(), 1.0)
+        self.assertAlmostEqual(self.matrix.array[0:, 1].std(), 1.0)
+        self.assertAlmostEqual(self.matrix.array[0:, 2].std(), 1.0)
