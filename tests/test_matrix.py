@@ -28,3 +28,17 @@ class TestMatrix(unittest.TestCase):
     def test_classes_mismatch(self):
         self.matrix.records([[1, 2, 3], [3, 2, 1]])
         self.assertRaises(IndexError, self.matrix.classes, ['A'])
+
+    def test_classes(self):
+        self.matrix.records([[1, 2, 3], [3, 2, 1]])
+        self.matrix.classes(['A', 'B'])
+        self.assertEqual(self.matrix.classes, ['A', 'B'])
+
+    def test_normalize(self):
+        self.matrix.records([[1.0, 2, 30], [2, 8, 6], [4, 5, 100]])
+        self.matrix.normalize()
+
+        # Make sure that the std dev is 1 for event column
+        self.assertEqual(self.matrix.array[0:, 0].std(), 1.0)
+        self.assertEqual(self.matrix.array[0:, 1].std(), 1.0)
+        self.assertEqual(self.matrix.array[0:, 2].std(), 1.0)

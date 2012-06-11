@@ -59,6 +59,23 @@ class Matrix(Space):
 
         self.classes = classes
 
+    def normalize(self):
+        """Normalizes all columns in the matrix so that the standard deviation
+        per column is equal to one."""
+
+        # Compute the current mean and standard deviation for each column
+        for column_index in range(self.dimension):
+
+            column = self.array[0:, column_index]
+            mean = column.mean()
+            std = column.std()
+
+            # Compute the new value for the element, considering the
+            # mean and std deviation.
+            for row_index in range(column.shape[0]):
+                element = self.array[row_index, column_index]
+                self.array[row_index, column_index] = (element - mean) / std
+
 
 def distance(p, q):
     """ Computes the Euclidian distance between two points
