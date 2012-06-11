@@ -20,7 +20,7 @@ class KNearestNeighbor(object):
                               (len(record), self.matrix.dimension))
 
         # Calculate the distance between the the record and training data
-        for index in range(self.matrix.array.shape[1]):
+        for index in range(self.matrix.array.shape[0]):
             matrix_record = self.matrix.array[index]
             distance = miner.utils.distance(record, matrix_record)
             self.nearest.add((distance, self.matrix.class_labels[index]))

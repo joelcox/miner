@@ -86,9 +86,9 @@ class CappedOrderedList(object):
 
     def add(self, item):
         """Adds a new item to the list"""
-        if item is isinstance(item, tuple):
+        try:
             value = item[0]
-        else:
+        except TypeError:
             value = item
 
         # Check whether and where we insert the new item
@@ -104,14 +104,14 @@ class CappedOrderedList(object):
             return 0
 
         for index in range(len(self.list)):
-
             item = self.list[index]
-            if item is isinstance(item, tuple):
+
+            try:
                 existing_value = item[0]
-            else:
+            except TypeError:
                 existing_value = item
 
-            if value > existing_value:
+            if value <= existing_value:
                 return index
 
         # Make sure to append if the list isn't full yet
