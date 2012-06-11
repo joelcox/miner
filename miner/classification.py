@@ -45,5 +45,5 @@ class KNearestNeighbor(object):
         for label, count in appearances.iteritems():
             if count > most_seen[1]:
                 most_seen = (label, count)
-                
+
         return most_seen[0]

@@ -135,13 +135,13 @@ class CappedOrderedList(object):
 
     def __str__(self):
         return str(self.list)
-        
+
     def __iter__(self):
         return self.list.__iter__()
 
+
 def distance(p, q):
-    """ Computes the Euclidian distance between two points
-    """
+    """ Computes the Euclidian distance between two points"""
     if len(p) != len(q):
         raise IndexError('The dimension of the two points don\'t match')
 
