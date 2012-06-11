@@ -1,6 +1,7 @@
 from __future__ import division
 import math
-import types
+
+import numpy
 
 
 class Space(object):
@@ -26,6 +27,37 @@ class Space(object):
 
         floats = map(float, args)
         self.array.append(tuple(floats))
+
+
+class Matrix(Space):
+
+    def records(self, records):
+        """Sets the array with records."""
+        array = numpy.array(records)
+
+        # Edge case for matrixes with only one record
+        try:
+            attributes = array.shape[1]
+        except IndexError:
+            attributes = array.shape[0]
+
+        if attributes != self.dimension:
+            raise IndexError('Amount of attributes (%s) does not match \
+                              matrix dimension (%s)' %
+                              (array.shape[1], self.dimension))
+
+        self.array = array
+
+    def classes(self, classes):
+        """Sets a list of classes for the coressponding
+        points"""
+
+        if len(classes) != len(self.array):
+            raise IndexError('Amount of classes (%s) does not match the \
+                              amount of records (%s)' %
+                              (len(classes), len(self.array)))
+
+        self.classes = classes
 
 
 def distance(p, q):
