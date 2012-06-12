@@ -30,13 +30,9 @@ class Space(object):
 
 
 class Matrix(Space):
-    
+
     def __init__(self, dimension=2):
-        if dimension < 2:
-            raise ValueError('Dimension can\'t be smaller than 2')
-    
-        self.dimension = dimension
-        self.array = []
+        super(Matrix, self).__init__(dimension)
         self.normalized = False
 
     def records(self, records):

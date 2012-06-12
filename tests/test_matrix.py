@@ -37,7 +37,7 @@ class TestMatrix(unittest.TestCase):
     def test_normalize(self):
         self.matrix.records([[1.0, 2, 30], [2, 8, 6], [4, 5, 100]])
         self.matrix.normalize()
-        
+
         self.assertEqual(self.matrix.normalized, True)
 
         # Make sure that the std dev is 1 for every column
