@@ -18,6 +18,19 @@ class KNearestNeighbor(object):
             raise IndexError('Amount of attributes (%s) does not match \
                               matrix dimension (%s)' %
                               (len(record), self.matrix.dimension))
+        
+        # Normalize the record using the known mean and std of the columns,
+        # but only if the matrix is normalized
+        if self.matrix.normalized is True:
+        
+            normalized_record = []
+            for index in range(len(record)):
+                mean = self.matrix.column_stats[index][0]
+                std = self.matrix.column_stats[index][0]
+                
+                normalized_record.append((record[index] - mean) / std)
+            
+            record = normalized_record
 
         # Calculate the distance between the the record and training data
         for index in range(self.matrix.array.shape[0]):

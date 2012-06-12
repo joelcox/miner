@@ -30,6 +30,14 @@ class Space(object):
 
 
 class Matrix(Space):
+    
+    def __init__(self, dimension=2):
+        if dimension < 2:
+            raise ValueError('Dimension can\'t be smaller than 2')
+    
+        self.dimension = dimension
+        self.array = []
+        self.normalized = False
 
     def records(self, records):
         """Sets the array with records."""
@@ -62,6 +70,8 @@ class Matrix(Space):
     def normalize(self):
         """Normalizes all columns in the matrix so that the standard deviation
         per column is equal to one."""
+        self.column_stats = []
+        self.normalized = True
 
         # Compute the current mean and standard deviation for each column
         for column_index in range(self.dimension):
@@ -69,6 +79,7 @@ class Matrix(Space):
             column = self.array[0:, column_index]
             mean = column.mean()
             std = column.std()
+            self.column_stats.append((mean, std))
 
             # Compute the new value for the element, considering the
             # mean and std deviation.
