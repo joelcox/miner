@@ -34,6 +34,10 @@ class TestMatrix(unittest.TestCase):
         self.matrix.classes(['A', 'B'])
         self.assertEqual(self.matrix.class_labels, ['A', 'B'])
 
+    def test_points_not_implemented(self):
+        self.assertRaises(NotImplementedError, self.matrix.points,
+                          [[1, 0], [0, 1]])
+
     def test_normalize(self):
         self.matrix.records([[1.0, 2, 30], [2, 8, 6], [4, 5, 100]])
         self.matrix.normalize()

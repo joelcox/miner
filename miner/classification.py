@@ -16,8 +16,7 @@ class KNearestNeighbor(object):
 
         if len(record) != self.matrix.dimension:
             raise IndexError('Amount of attributes (%s) does not match \
-                              matrix dimension (%s)' %
-                              (len(record), self.matrix.dimension))
+                matrix dimension (%s)' % (len(record), self.matrix.dimension))
 
         # Normalize the record using the known mean and std of the columns,
         # but only if the matrix is normalized

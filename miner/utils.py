@@ -47,8 +47,7 @@ class Matrix(Space):
 
         if attributes != self.dimension:
             raise IndexError('Amount of attributes (%s) does not match \
-                              matrix dimension (%s)' %
-                              (array.shape[1], self.dimension))
+                matrix dimension (%s)' % (array.shape[1], self.dimension))
 
         self.array = array
 
@@ -58,8 +57,7 @@ class Matrix(Space):
 
         if len(classes) != len(self.array):
             raise IndexError('Amount of classes (%s) does not match the \
-                              amount of records (%s)' %
-                              (len(classes), len(self.array)))
+                amount of records (%s)' % (len(classes), len(self.array)))
 
         self.class_labels = classes
 
@@ -82,6 +80,9 @@ class Matrix(Space):
             for row_index in range(column.shape[0]):
                 element = self.array[row_index, column_index]
                 self.array[row_index, column_index] = (element - mean) / std
+
+    def points(self, records):
+        raise NotImplementedError
 
 
 class CappedOrderedList(object):

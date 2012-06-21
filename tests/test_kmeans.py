@@ -29,6 +29,5 @@ class TestKMeans(unittest.TestCase):
         self.kmeans.compute_distances()
         self.kmeans.assign_points()
 
-        self.assertEquals(self.kmeans.clusters,
-                          [{'points': [0, 1, 2]},
-                            {'points': [3, 4, 5]}])
+        self.assertEquals(self.kmeans.clusters, [{'points': [0, 1, 2]},
+                          {'points': [3, 4, 5]}])
