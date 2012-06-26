@@ -14,6 +14,16 @@ class TestUtils(unittest.TestCase):
         self.assertEquals(miner.utils.distance((1, 2, 3), (3, 2, 1)),
                           2.8284271247461903)
 
+    def test_similarity(self):
+        self.assertAlmostEquals(miner.utils.similarity((3, 2, 0, 5, 0, 0, 0,
+                                2, 0, 0),  (1, 0, 0, 0, 0, 0, 0, 1, 0, 2)),
+            0.31497039)
+
+    def test_norm(self):
+        # Wolfram `norm {1, 2}`
+        self.assertAlmostEquals(miner.utils.norm((1, 2)), 2.23606797)
+        self.assertAlmostEquals(miner.utils.norm((1, 2, 3)), 3.7416573867)
+
     def test_gini(self):
         self.assertEquals(miner.utils.gini(0, 6), 0)
         self.assertEquals(miner.utils.gini(1, 5),

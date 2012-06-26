@@ -149,7 +149,7 @@ class CappedOrderedList(object):
 
 
 def distance(p, q):
-    """ Computes the Euclidian distance between two points"""
+    """Computes the Euclidian distance between two points"""
     if len(p) != len(q):
         raise IndexError('The dimension of the two points don\'t match')
 
@@ -160,17 +160,32 @@ def distance(p, q):
     return math.sqrt(total)
 
 
+def similarity(p, q):
+    """Computes the cosine similarity between two points"""
+    if len(p) != len(q):
+        raise IndexError('The dimension of the two points don\'t match')
+
+    total = [p[i] * q[i] for i in range(len(p))]
+    total = reduce(lambda x, y: x + y, total)
+    return float(total) / (norm(p) * norm(q))
+
+
+def norm(p):
+    """Computes the norm of a vector"""
+    total = [x ** 2 for x in p]
+    total = reduce(lambda x, y: x + y, total)
+    return math.sqrt(total)
+
+
 def gini(p, q):
-    """ Computes the Gini index between two numbers
-    """
+    """Computes the Gini index between two numbers"""
     # TODO: generalize to arbitrary number of points
     total = p + q
     return 1 - (p / total) ** 2 - (q / total) ** 2
 
 
 def entropy(p, q):
-    """ Computes the Entropy between two numbers
-    """
+    """Computes the Entropy between two numbers"""
     total = p + q
 
     # TODO: generalize to arbitrary number of points
@@ -188,7 +203,6 @@ def entropy(p, q):
 
 
 def classification_error(p, q):
-    """ Computers the classification error rate
-    """
+    """ Computers the classification error rate"""
     total = p + q
     return 1 - max(p / total, q / total)
