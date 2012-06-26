@@ -88,9 +88,10 @@ class Matrix(Space):
 class CappedOrderedList(object):
     """A list with a fixed size that maintains order"""
 
-    def __init__(self, length=3):
+    def __init__(self, length=3, ascending=True):
         self.list = []
         self.length = length
+        self.ascending = ascending
 
     def add(self, item):
         """Adds a new item to the list"""
@@ -119,8 +120,13 @@ class CappedOrderedList(object):
             except TypeError:
                 existing_value = item
 
-            if value <= existing_value:
-                return index
+            # Flip is the list is in descending order
+            if self.ascending is True:
+                if value <= existing_value:
+                    return index
+            else:
+                if value >= existing_value:
+                    return index
 
         # Make sure to append if the list isn't full yet
         if self.length != len(self.list):

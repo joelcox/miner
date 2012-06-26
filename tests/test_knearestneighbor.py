@@ -39,3 +39,8 @@ class TestKNearestNeighbor(unittest.TestCase):
     def test_classification(self):
         self.knn.matrix.classes(['A', 'A', 'B'])
         self.assertEqual(self.knn.classify([1, 4, 5]), 'A')
+
+    def test_classification_cosine(self):
+        self.knn.matrix.classes(['A', 'A', 'B'])
+        self.knn.function = miner.utils.similarity
+        self.assertEqual(self.knn.classify([1, 4, 5]), 'A')

@@ -3,16 +3,18 @@ import miner.utils
 
 class KNearestNeighbor(object):
 
-    def __init__(self, k, matrix):
+    def __init__(self, k, matrix, function=miner.utils.distance):
         if isinstance(matrix, miner.utils.Matrix) is False:
             raise TypeError('A matrix should be passed as the second argument')
 
         self.k = k
         self.matrix = matrix
+        self.function = function
 
     def classify(self, record):
         """Classifies a certain record by looking at the nearest records"""
-        self.nearest = miner.utils.CappedOrderedList(self.k)
+        ascending = True if self.function.__name__ != 'similarity' else False
+        self.nearest = miner.utils.CappedOrderedList(self.k, ascending)
 
         if len(record) != self.matrix.dimension:
             raise IndexError('Amount of attributes (%s) does not match \
@@ -34,7 +36,7 @@ class KNearestNeighbor(object):
         # Calculate the distance between the the record and training data
         for index in range(self.matrix.array.shape[0]):
             matrix_record = self.matrix.array[index]
-            distance = miner.utils.distance(record, matrix_record)
+            distance = self.function(record, matrix_record)
             self.nearest.add((distance, self.matrix.class_labels[index]))
 
         return self._most_common_class()
