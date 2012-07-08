@@ -17,7 +17,7 @@ class TestUtils(unittest.TestCase):
     def test_similarity(self):
         self.assertAlmostEquals(miner.utils.similarity((3, 2, 0, 5, 0, 0, 0,
                                 2, 0, 0),  (1, 0, 0, 0, 0, 0, 0, 1, 0, 2)),
-            0.31497039)
+                                0.31497039)
 
     def test_norm(self):
         # Wolfram `norm {1, 2}`
