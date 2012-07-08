@@ -27,7 +27,7 @@ class KNearestNeighbor(object):
             normalized_record = []
             for index in range(len(record)):
                 mean = self.matrix.column_stats[index][0]
-                std = self.matrix.column_stats[index][0]
+                std = self.matrix.column_stats[index][1]
 
                 normalized_record.append((record[index] - mean) / std)
 

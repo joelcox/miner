@@ -73,6 +73,7 @@ class Matrix(Space):
             column = self.array[0:, column_index]
             mean = column.mean()
             std = column.std()
+
             self.column_stats.append((mean, std))
 
             # Compute the new value for the element, considering the

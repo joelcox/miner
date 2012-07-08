@@ -1,2 +1,4 @@
 environment
+.coverage
+cover/
 *.pyc
